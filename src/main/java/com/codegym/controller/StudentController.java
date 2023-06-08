@@ -105,7 +105,7 @@ public class StudentController {
 //    }
 
     @PostMapping("/create")
-    public String createStudent(@CookieValue("countStudent") Integer countStudent, HttpServletResponse response, Model model, @Validated @ModelAttribute("studentCreateDTO") StudentCreateDTO studentCreateDTO, BindingResult bindingResult, RedirectAttributes redirect) {
+    public String createStudent(@CookieValue(value = "countStudent", defaultValue = "0") Integer countStudent, HttpServletResponse response, Model model, @Validated @ModelAttribute("studentCreateDTO") StudentCreateDTO studentCreateDTO, BindingResult bindingResult, RedirectAttributes redirect) {
 //        Student student = new Student(codeStudent, nameStudent, point, gender);
         new StudentCreateDTO().validate(studentCreateDTO, bindingResult);
         if (bindingResult.hasErrors()) {
@@ -125,9 +125,9 @@ public class StudentController {
         return "redirect:/student";
     }
 
-    @ExceptionHandler({Exception.class})
-    public String handler() {
-        return "error";
-    }
+//    @ExceptionHandler({Exception.class})
+//    public String handler() {
+//        return "error";
+//    }
 
 }
